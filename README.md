@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# F&P Sushi-Bar Aufgabe
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ - Author: Rene Schöner-Catanese
+ - Date: 03.03.2023
+ - Frontend: Jquery, Bootstrap and Font Awesome
+ - Framework: Laravel
+ - <a href="https://github.com/CodeCaprese/fp-sushi-bar" target="blank">Repository</a>
+ - <a href="https://sushibar.schoener-catanese.de" target="_blank">Live demo</a>
 
-## About Laravel
+## Prerequisites
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+ - \>= PHP 8.0
+ - composer
+ - database (for example MySQL or MariaDB)
+ - Created database with name "sushibar", grant user all privileges.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Local development 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+ - change in `.env` file the database values `DB_USERNAME` and `DB_PASSWORD` with user that got granted privileges 
+ - Open CMD in Project Folder (same level like app and bootstrap folder)
+ - execute `composer install`
+ - execute `php artisan migrate`
+ - execute `php artisan serve`, now the php webserver startet.
+ - open Browser and navigate to `localhost:8000`
 
-## Learning Laravel
+## XAMPP, WAMP or LAMP
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ - Windows - C:/xampp/apache/conf/extra/httpd-vhosts.conf
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    `<VirtualHost *:80>`<br />
+    `DocumentRoot "C:/xampp/htdocs/PROJECT_NAME/public"`<br />
+    `ServerName PROJECT_NAME.test`<br />
+    `</VirtualHost>`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Mac - /opt/lampp/etc/extra/httpd-vhosts.conf
 
-## Laravel Sponsors
+  `<VirtualHost *:80>`<br />
+  `DocumentRoot /opt/lampp/htdocs/PROJECT_NAME/public`<br />
+  `ServerName PROJECT_NAME.test`<br />
+  `ServerAlias www.PROJECT_NAME.test`<br />
+  `</VirtualHost>`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- change in `.env` file the database values `DB_USERNAME` and `DB_PASSWORD` with user that got granted privileges
+- Open CMD in Project Folder (same level like app and bootstrap folder)
+- execute `composer install`
+- execute `php artisan migrate`
+- open Browser and navigate to `ServerName` resp. `ServerAlias`
 
-### Premium Partners
+## View
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+For an easy view, I used a bootstrap table design, where all used seats are shown in green. Also a group number is
+written to identify which group came together. An icon to bill the group is also included.
 
-## Contributing
+## Tests
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To execute tests use command `php artisan test --testsuite=Feature`. **Note**: Tests are using same database
+as mentioned in `.env`. 
 
-## Code of Conduct
+## Which Files did I changed?
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+There are two commits in the git repository, the first was an initial basic Laravel commit.
+The second is contains all created, modified and deleted files.
 
-## Security Vulnerabilities
+## Where is the "main logic"?
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+ - In `app\Http\Controllers\TableController` is the logic where the seating, check for empty spaces and check which space 
+   the best option to seat customer.
+ - Validation can be found in `app/Http/Requests`. 
+ - The routes including the name `routes/web.php`
+ - Tests are in `tests/Feature`
 
-## License
+## Usage
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+First you have to specify how many seats at the table are. Afterwards you can set how many customer want
+to seat down. An alert message modal will return useful information.

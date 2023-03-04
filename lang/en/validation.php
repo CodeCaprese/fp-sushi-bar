@@ -166,7 +166,21 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'numberOfSeats' => [
+            'required' => 'Please provide a number of seats.',
+            'gte' => 'Number of seats must be minimum :value.'
+        ],
+
+        'numberOfCustomers' => [
+            'required' => 'Please provide a number of customer.',
+            'gte' => 'Number of customer must be minimum :value.',
+            'lte' => 'Number of customer must be maximum :value.'
+        ],
     ],
+
+    'billing_rule_group_not_at_table' => 'The group is no longer at the table.',
+
 
     /*
     |--------------------------------------------------------------------------

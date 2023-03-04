@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, "index"])
+    ->name("home.index");
+Route::post('/store', [HomeController::class, "store"])
+    ->name("home.store");
+
+Route::middleware(['check.init'])->group(function () {
+    Route::prefix('table')->group(function () {
+        Route::get('/', [TableController::class, "index"])
+            ->name("table.index");
+        Route::post('seat', [TableController::class, "seat"])
+            ->name("table.seat");
+        Route::post('billing', [TableController::class, "billing"])
+            ->name("table.billing");
+    });
 });
